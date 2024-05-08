@@ -25,7 +25,7 @@ endif
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		$(BUILD_DOCS) \
-		-Dauto_features=enabled
+		-Dauto_features=enabled \
 		-Dinstalled_tests=true \
 		-Dintrospection=enabled \
 		$(NULL)
@@ -116,6 +116,9 @@ override_dh_clean:
 		rm -f debian/$$file; \
 	done
 	rm -rf $(mimedir)
+
+override_dh_gnome_clean:
+	dh_gnome_clean --no-control
 
 override_dh_builddeb:
 	# on Ubuntu PNGs are optimised using 'optipng', but the (installed)
