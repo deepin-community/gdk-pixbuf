@@ -1,3 +1,43 @@
+gdk-pixbuf (2.42.10+dfsg-3) unstable; urgency=medium
+
+  * Team upload
+  * d/control, d/rules: Reinstate dh-sequence-gnome, but disable
+    control.in.
+    Ubuntu uses this sequence to pull in the Ubuntu-specific
+    dh_translations.
+  * d/control: Add ${gir:Depends} to -dev package
+  * d/control: Use ${gir:Provides} instead of hard-coding it.
+    gobject-introspection (>= 1.78.1-5~) generates this for us.
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 14 Nov 2023 10:02:24 +0000
+
+gdk-pixbuf (2.42.10+dfsg-2) unstable; urgency=medium
+
+  * Team upload
+
+  [ Amin Bandali ]
+  * Change packaging branch to debian/latest
+
+  [ Simon McVittie ]
+  * d/clean: Clean up debian/tmp-udeb/, obj-udeb/ (Closes: #1045013)
+  * d/rules: Fix escaped newline.
+    No functional change, because the options after the incorrect newline
+    were explicitly setting default behaviour anyway.
+  * d/.gitignore: Add
+  * d/control: Stop generating from a template.
+    We don't use any of the other dh-sequence-gnome features (there are no
+    libtool archives, and we don't use the gnome:Foo family of substvars)
+    so drop the build-dependency on dh-sequence-gnome.
+  * d/control: Add Provides on gir1.2-*-dev package names.
+    Adding versioned Provides on gir1.2-*-dev corresponding to each GIR XML
+    file is a small step towards being able to exclude GObject-Introspection
+    with a build-profile when cross-compiling.
+    (Helps: #1030223)
+  * Remove version constraints unnecessary since bullseye (oldstable)
+  * Update standards version to 4.6.2, no changes needed.
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 01 Nov 2023 23:29:20 +0000
+
 gdk-pixbuf (2.42.10+dfsg-1) unstable; urgency=medium
 
   * Team upload
