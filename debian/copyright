@@ -2,12 +2,9 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: gdk-pixbuf
 Source: https://download.gnome.org/sources/gdk-pixbuf/
 Files-Excluded:
- docs/gdk-pixbuf
- docs/gdk-pixdata
  tests/bug753605-atsize.jpg
 Comment:
- The documentation is rebuilt from source.
- For the test see <https://gitlab.gnome.org/GNOME/gdk-pixbuf/issues/84>.
+ See <https://gitlab.gnome.org/GNOME/gdk-pixbuf/issues/84>.
 
 Files: *
 Copyright:
@@ -88,10 +85,6 @@ License: GPL-2+
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
     .
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
-    .
     On Debian systems, the complete text of the GNU General
     Public License can be found in `/usr/share/common-licenses/GPL-2'.
 
@@ -105,10 +98,6 @@ License: LGPL-2+
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Library General Public License for more details.
-    .
-    You should have received a copy of the GNU Library General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
     .
     On Debian systems, the complete text of the GNU Lesser General
     Public License can be found in `/usr/share/common-licenses/LGPL-2'.
