@@ -28,6 +28,7 @@ override_dh_auto_configure:
 		-Dauto_features=enabled \
 		-Dinstalled_tests=true \
 		-Dintrospection=enabled \
+		-Dothers=enabled \
 		$(NULL)
 ifneq ($(filter %-udeb,$(built_binaries)),)
 	dh_auto_configure \
@@ -40,6 +41,7 @@ ifneq ($(filter %-udeb,$(built_binaries)),)
 		-Dpng=enabled \
 		-Dtiff=disabled \
 		-Djpeg=disabled \
+		-Dothers=disabled \
 		-Dman=false \
 		$(NULL)
 endif
@@ -133,15 +135,9 @@ override_dh_strip_nondeterminism:
 # quite right for installed-tests
 override_dh_fixperms:
 	dh_fixperms -Xusr/libexec/installed-tests
-ifneq ($(filter %-tests,$(binaries)),)
-	chmod --changes --recursive u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*/
-	chmod --changes a+rX,u+w,og-w debian/*-tests/usr/libexec/installed-tests
-	chmod --changes u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*.conf
+ifneq ($(filter %-tests,$(built_binaries)),)
+	chmod --changes --recursive a+rX,u+w,og-w debian/*-tests/usr/libexec/installed-tests
 	chmod --changes u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*.gif
-	chmod --changes u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*.icc
 	chmod --changes u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*.jpg
 	chmod --changes u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*.png
-	chmod --changes u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*.rgba
-	chmod --changes u=rw,og=r debian/*-tests/usr/libexec/installed-tests/gdk-pixbuf/*.xmp
-
 endif

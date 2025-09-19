@@ -1,3 +1,71 @@
+gdk-pixbuf (2.42.12+dfsg-5) unstable; urgency=medium
+
+  * Team upload
+
+  [ Sebastien Bacher ]
+  * Fix dh_fixperms override
+
+  [ Simon McVittie ]
+  * Fix dh_fixperms override more: don't make subdirectories non-executable
+  * Build-depend on gobject-introspection instead of libgirepository1.0-dev
+  * Build-depend on required gir1.2-*-dev packages
+  * Edit previous changelog entry to mention #1109262
+  * d/copyright: Don't quote the FSF's former postal address
+  * Standards-Version: 4.7.2 (no changes required)
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 15 Aug 2025 10:57:12 +0100
+
+gdk-pixbuf (2.42.12+dfsg-4) unstable; urgency=high
+
+  * Team upload
+  * Add patch from upstream fixing an out of bounds read for crafted
+    JPEGs. (CVE-2025-7345, Closes: #1109262)
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 12 Jul 2025 16:56:46 +0100
+
+gdk-pixbuf (2.42.12+dfsg-3) unstable; urgency=high
+
+  * Team upload
+  * d/p/lzw-Fix-reporting-of-bytes-written-in-decoder.patch:
+    Add patch from upstream to fix LZW error reporting.
+    Setting the reported output size to the full buffer length rather than
+    the actual number of written bytes can cause uninitialized memory
+    contents to be disclosed. (CVE-2025-6199; Closes: #1107994)
+  * Set high urgency for security fix
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 20 Jun 2025 09:52:41 +0100
+
+gdk-pixbuf (2.42.12+dfsg-2) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * d/control: Remove some redundant dependencies
+  * Standards-Version: 4.7.0 (no changes required)
+  * libgdk-pixbuf2.0-doc: Register the reference manuals with doc-base
+
+  [ Jeremy Bícha ]
+  * Drop obsolete Pre-Depends
+  * Run wrap-and-sort
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 22 Jan 2025 08:21:30 -0500
+
+gdk-pixbuf (2.42.12+dfsg-1) unstable; urgency=high
+
+  * Team upload
+  * New upstream release
+    - Reject malformed .ani files, including one category that can cause
+      memory corruption (CVE-2022-48622)
+  * d/rules: Keep .ani, .bmp, .icns, .ico, .pnm, .qtif, .tga, .xbm, .xpm
+    loaders enabled for now. They are weakly maintained, and no longer
+    enabled by default upstream to reduce security exposure, but disabling
+    them would be a feature regression, which we shouldn't do in the same
+    upload as a security fix.
+  * d/rules: Disable miscellaneous loaders for the udeb, which as far as
+    we know only needs PNG support
+  * d/copyright: Pre-generated HTML documentation no longer needs excluding
+  * Set high urgency for security fix
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 16 May 2024 15:25:37 +0100
+
 gdk-pixbuf (2.42.10+dfsg-3) unstable; urgency=medium
 
   * Team upload
