@@ -1,3 +1,110 @@
+gdk-pixbuf (2.44.6+dfsg-1) unstable; urgency=high
+
+  * New upstream release
+    - CVE-2026-5201 Heap overflow via improper validation of color
+      component counts (Closes: #1132501)
+  * Remove test patch applied in new release
+  * Remove transitional libgdk-pixbuf2.0-0-udeb
+  * Update Standards Version to 4.7.4
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 02 Apr 2026 14:04:10 -0400
+
+gdk-pixbuf (2.44.5+dfsg-4) unstable; urgency=medium
+
+  * Add patch to support JPEG2000 (Closes: #815612)
+  * Bump minimum glycin to 2.0.8 for this to work
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Sat, 14 Feb 2026 10:24:34 -0500
+
+gdk-pixbuf (2.44.5+dfsg-3) unstable; urgency=medium
+
+  * Re-enable glycin for loong64
+  * Release to unstable
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 09 Feb 2026 07:00:40 -0500
+
+gdk-pixbuf (2.44.5+dfsg-2) experimental; urgency=medium
+
+  [ Alessandro Astone ]
+  * d/control, d/rules: Enable glycin on i386
+
+  [ Carlos Henrique Lima Melara ]
+  * d/rules: remove useless if clause in dh_auto_test override
+
+  [ Jeremy Bícha ]
+  * Disable glycin for loong64 because it isn't fully bootstrapped yet.
+    glycin is now enabled on all other Debian Release Architectures, but not
+    enabled on any Debian ports.
+  * Bump Standards Version to 4.7.3
+
+  [ Simon McVittie ]
+  * Opt into Salsa CI
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 05 Feb 2026 13:50:28 -0500
+
+gdk-pixbuf (2.44.5+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * d/rules: Re-enable build test gating
+  * d/p: Rebase patches
+  * d/patches: Fix tests with older gdk-pixbuf installed in the rootfs
+  * d/patches: Use the native xpm and xbm loaders instead of glycin
+
+ -- Alessandro Astone <alessandro.astone@canonical.com>  Thu, 29 Jan 2026 10:56:51 +0100
+
+gdk-pixbuf (2.44.4+dfsg-3) experimental; urgency=medium
+
+  * Enable the legacy non-glycin XPM & XBM loaders for glycin architectures
+    (Closes: #1120607)
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 12 Nov 2025 22:37:30 -0500
+
+gdk-pixbuf (2.44.4+dfsg-2) experimental; urgency=medium
+
+  * Switch to glycin for release architectures and loong64 except i386
+    (Closes: #1116981, #1071271) (LP: #2122289)
+  * Depend on glycin-thumbnailers on those architectures
+  * libgdk-pixbuf2.0-bin no longer contains a thumbnailer on those
+    architectures, but still contains gdk-pixbuf-pixdata and
+    gdk-pixbuf-csource, so stop recommending it on those architectures
+  * Use dh-exec to manage architecture-specific install rules
+  * Follow Fedora's example and disable auto features
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 12 Nov 2025 07:06:13 -0500
+
+gdk-pixbuf (2.44.4+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Remove bitmap patch applied in new release
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 21 Oct 2025 13:28:37 -0400
+
+gdk-pixbuf (2.44.3+dfsg-3) unstable; urgency=medium
+
+  * Cherry-pick proposed patch to fix bitmap loading, as seen in
+    the window buttons feature for the Xfce panel
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 01 Oct 2025 14:37:38 -0400
+
+gdk-pixbuf (2.44.3+dfsg-2) unstable; urgency=medium
+
+  * Release to unstable
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 01 Oct 2025 06:45:40 -0400
+
+gdk-pixbuf (2.44.3+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * Update configure options
+    - Don't switch to glycin yet
+    - Explicitly disable native Android loader
+    - Disable tiff for udeb
+    - Disable thumbnailer for udeb
+    - Keep jpeg & png as "built-in" loaders since that was the previous default
+  * Remove 3 patches applied in new release
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 30 Sep 2025 13:45:03 -0400
+
 gdk-pixbuf (2.42.12+dfsg-5) unstable; urgency=medium
 
   * Team upload

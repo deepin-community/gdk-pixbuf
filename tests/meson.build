@@ -72,7 +72,7 @@ installed_tests = {
   },
   'pixbuf-fail': { 'suites': ['conform', 'slow'], },
   'pixbuf-icon-serialize': { 'suites': ['conform'], },
-  'pixbuf-randomly-modified': { 'suites': ['slow'], },
+  'pixbuf-randomly-modified': { 'suites': ['slow', 'flaky'], },
   'pixbuf-threads': { 'suites': ['io'], },
   'pixbuf-gif': {
     'suites': ['io'],
@@ -138,7 +138,6 @@ test_data = [
   'bug143608-comment.jpg',
   'bug725582-testrotate.jpg',
   'bug725582-testrotate.png',
-  'bug753605-atsize.jpg',
   'cve-2015-4491.bmp',
   'large.png',
   'large.jpg',

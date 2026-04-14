@@ -127,6 +127,12 @@ test_at_size (void)
       return;
     }
 
+  if (!g_file_test (g_test_get_filename (G_TEST_DIST, "bug753605-atsize.jpg", NULL), G_FILE_TEST_EXISTS))
+    {
+      g_test_skip ("non-free test data removed");
+      return;
+    }
+
   ref = gdk_pixbuf_new_from_file (g_test_get_filename (G_TEST_DIST, "bug753605-atsize.jpg", NULL), &error);
   g_assert_no_error (error);
   g_object_unref (ref);
@@ -196,10 +202,11 @@ test_jpeg_fbfbfbfb (void)
   g_assert_no_error (error);
 
   gdk_pixbuf_loader_close (loader, &error);
-  g_assert_error (error, GDK_PIXBUF_ERROR, GDK_PIXBUF_ERROR_CORRUPT_IMAGE);
 
-  pixbuf = gdk_pixbuf_loader_get_pixbuf (loader);
-  g_assert_nonnull (pixbuf);
+  if (error != NULL && error->domain == GDK_PIXBUF_ERROR && error->code == GDK_PIXBUF_ERROR_INSUFFICIENT_MEMORY)
+    g_test_message ("OK: failed reporting insufficient memory: %s", error->message);
+  else
+    g_assert_error (error, GDK_PIXBUF_ERROR, GDK_PIXBUF_ERROR_CORRUPT_IMAGE);
 
   g_object_unref (loader);
   g_free (contents);
