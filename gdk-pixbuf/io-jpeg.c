@@ -356,6 +356,7 @@ jpeg_parse_exif_app2_segment (JpegExifContext *context, jpeg_saved_marker_ptr ma
 		context->icc_profile = g_new (gchar, chunk_size);
 		/* copy the segment data to the profile space */
 		memcpy (context->icc_profile, marker->data + 14, chunk_size);
+                ret = TRUE;
 		goto out;
 	}
 
@@ -377,12 +378,15 @@ jpeg_parse_exif_app2_segment (JpegExifContext *context, jpeg_saved_marker_ptr ma
 	/* copy the segment data to the profile space */
 	memcpy (context->icc_profile + offset, marker->data + 14, chunk_size);
 
-	/* it's now this big plus the new data we've just copied */
-	context->icc_profile_size += chunk_size;
+        context->icc_profile_size = MAX (context->icc_profile_size, offset + chunk_size);
 
 	/* success */
 	ret = TRUE;
 out:
+        if (!ret) {
+                g_free (context->icc_profile);
+                context->icc_profile = NULL;
+        }
 	return ret;
 }
 
@@ -620,6 +624,30 @@ gdk_pixbuf__real_jpeg_image_load (FILE *f, struct jpeg_decompress_struct *cinfo,
 	jpeg_start_decompress (cinfo);
 	cinfo->do_fancy_upsampling = FALSE;
 	cinfo->do_block_smoothing = FALSE;
+
+        /* Reject unsupported component counts */
+        if (cinfo->output_components != 3 && cinfo->output_components != 4 &&
+            !(cinfo->output_components == 1 &&
+              cinfo->out_color_space == JCS_GRAYSCALE)) {
+                g_set_error (error,
+                             GDK_PIXBUF_ERROR,
+                             GDK_PIXBUF_ERROR_CORRUPT_IMAGE,
+                             _("Unsupported number of color components (%d)"),
+                             cinfo->output_components);
+                goto out;
+        }
+
+        /* Reject unsupported component counts */
+        if (cinfo->output_components != 3 && cinfo->output_components != 4 &&
+            !(cinfo->output_components == 1 &&
+              cinfo->out_color_space == JCS_GRAYSCALE)) {
+                g_set_error (error,
+                             GDK_PIXBUF_ERROR,
+                             GDK_PIXBUF_ERROR_CORRUPT_IMAGE,
+                             _("Unsupported number of color components (%d)"),
+                             cinfo->output_components);
+                goto out;
+        }
 
 	pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB, 
 				 cinfo->out_color_components == 4 ? TRUE : FALSE, 

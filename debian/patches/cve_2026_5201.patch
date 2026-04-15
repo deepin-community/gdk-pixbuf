@@ -1,0 +1,29 @@
+Description: Fix CVE-2026-5201: Heap overflow via improper validation of color component counts
+Author: Matthias Clasen <mclasen@redhat.com>
+Origin: upstream
+Bug: https://security-tracker.debian.org/tracker/CVE-2026-5201
+Forwarded: not-needed
+---
+ a/gdk-pixbuf/io-jpeg.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+--- a/gdk-pixbuf/io-jpeg.c
++++ b/gdk-pixbuf/io-jpeg.c
+@@ -627,6 +627,18 @@ gdk_pixbuf__real_jpeg_image_load (FILE *f, struct jpeg_decompress_struct *cinfo,
+ 	cinfo->do_fancy_upsampling = FALSE;
+ 	cinfo->do_block_smoothing = FALSE;
+ 
++        /* Reject unsupported component counts */
++        if (cinfo->output_components != 3 && cinfo->output_components != 4 &&
++            !(cinfo->output_components == 1 &&
++              cinfo->out_color_space == JCS_GRAYSCALE)) {
++                g_set_error (error,
++                             GDK_PIXBUF_ERROR,
++                             GDK_PIXBUF_ERROR_CORRUPT_IMAGE,
++                             _("Unsupported number of color components (%d)"),
++                             cinfo->output_components);
++                goto out;
++        }
++
+ 	pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB, 
+ 				 cinfo->out_color_components == 4 ? TRUE : FALSE, 
+ 				 8,
