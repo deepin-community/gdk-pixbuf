@@ -1,25 +1,16 @@
-gdk-pixbuf (2.42.12+dfsg-5) unstable; urgency=medium
+gdk-pixbuf (2.42.12+dfsg-4+deb13u1) trixie-security; urgency=high
 
-  * Team upload
+  * Non-maintainer upload by the Security Team.
+  * jpeg: Reject unsupported number of components (CVE-2026-5201)
+    (Closes: #1132501)
 
-  [ Sebastien Bacher ]
-  * Fix dh_fixperms override
-
-  [ Simon McVittie ]
-  * Fix dh_fixperms override more: don't make subdirectories non-executable
-  * Build-depend on gobject-introspection instead of libgirepository1.0-dev
-  * Build-depend on required gir1.2-*-dev packages
-  * Edit previous changelog entry to mention #1109262
-  * d/copyright: Don't quote the FSF's former postal address
-  * Standards-Version: 4.7.2 (no changes required)
-
- -- Simon McVittie <smcv@debian.org>  Fri, 15 Aug 2025 10:57:12 +0100
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 04 Apr 2026 22:42:18 +0200
 
 gdk-pixbuf (2.42.12+dfsg-4) unstable; urgency=high
 
   * Team upload
   * Add patch from upstream fixing an out of bounds read for crafted
-    JPEGs. (CVE-2025-7345, Closes: #1109262)
+    JPEGs. (CVE-2025-7345)
 
  -- Simon McVittie <smcv@debian.org>  Sat, 12 Jul 2025 16:56:46 +0100
 
