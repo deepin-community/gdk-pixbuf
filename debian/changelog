@@ -1,3 +1,9 @@
+gdk-pixbuf (2.42.12+dfsg-5deepin1) unstable; urgency=medium
+
+  * jpeg: Reject unsupported number of components (CVE-2026-5201)
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Thu, 16 Apr 2026 18:16:08 +0800
+
 gdk-pixbuf (2.42.12+dfsg-5) unstable; urgency=medium
 
   * Team upload
