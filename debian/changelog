@@ -1,3 +1,10 @@
+gdk-pixbuf (2.42.12+dfsg-5deepin1) unstable; urgency=medium
+
+  * Fix CVE-2026-5201: heap buffer overflow in JPEG loader due to
+    missing color component validation
+
+ -- deepin-ci-robot <packages@deepin.org>  Mon, 27 Apr 2026 20:52:45 +0800
+
 gdk-pixbuf (2.42.12+dfsg-5) unstable; urgency=medium
 
   * Team upload
