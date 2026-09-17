@@ -1,3 +1,12 @@
+gdk-pixbuf (2.42.12+dfsg-5deepin3) unstable; urgency=medium
+
+  * fix(cve): CVE-2026-81893 (medium) - [PATCH] jpeg: When freeing
+    memory, unset the size   Upstream:
+    https://gitlab.gnome.org/GNOME/gdk-pixbuf/-
+    /commit/efe658674bd103d1c9bf50809d5767a3f6dd5a01
+
+ -- deepin-ci-robot <packages@deepin.org>  Fri, 18 Sep 2026 02:35:35 +0800
+
 gdk-pixbuf (2.42.12+dfsg-5deepin2) unstable; urgency=medium
 
   * Rebuild with LTO enabled (dpkg vendor feature optimize/lto).
